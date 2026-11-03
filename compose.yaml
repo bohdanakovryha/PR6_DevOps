@@ -1,0 +1,29 @@
+# Training environment description. The image is selected with APP_IMAGE,
+# so the same file is used for a normal deploy and for a rollback.
+name: pr6
+
+services:
+  app:
+    image: ${APP_IMAGE:-pr6-devops:local}
+    build:
+      context: .
+      args:
+        APP_VERSION: ${APP_VERSION:-1.0.0}
+        GIT_COMMIT: ${GIT_COMMIT:-local}
+    container_name: pr6-app
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${HOST_PORT:-8080}:${APP_PORT:-8000}"
+    restart: unless-stopped
+    stop_grace_period: 15s
+    # Basic hardening: no extra Linux capabilities, no privilege escalation.
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
