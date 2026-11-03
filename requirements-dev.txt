@@ -1,0 +1,8 @@
+# Test tooling (CI and local development), pinned as well.
+-r requirements.txt
+pytest==9.1.1
+pluggy==1.6.0
+iniconfig==2.3.0
+packaging==26.3
+Pygments==2.21.0
+pytest-testinfra==10.2.2
