@@ -37,7 +37,7 @@ COPY gunicorn.conf.py .
 COPY app/ ./app/
 
 # The data directory must belong to the app user, otherwise /health reports 503.
-RUN mkdir -p /app/data && chown app:app /app/data
+RUN mkdir -p /app/data   # experiment 2: chown removed on purpose
 
 USER app
 
