@@ -22,7 +22,7 @@ def test_version_returns_build_info(client):
     assert response.status_code == 200
     assert response.get_json() == {
         "name": "pr6-service",
-        "version": "1.2.3",
+        "version": "9.9.9",  # deliberately wrong (experiment 1)
         "commit": "abc1234",
         "environment": "dev",
     }
