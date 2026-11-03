@@ -25,6 +25,11 @@ env:
   PYTHON_VERSION: "3.12"
   APP_VERSION: "1.0.0"
 
+# Explicit bash enables "-eo pipefail": a failing command in a pipe fails the step.
+defaults:
+  run:
+    shell: bash
+
 jobs:
   test:
     name: Unit tests (pytest)
